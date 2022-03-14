@@ -30,7 +30,7 @@ public class StockService {
 		baseResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		JedisPool jedisPool = JedisConnector.getPool();
 		try (Jedis jedis = jedisPool.getResource()) {
-			jedis.select(2);
+			jedis.select(1);
 			baseResponse = createResponse(baseResponse, jedis, city, location);
 			jedisPool.destroy();
 			return baseResponse;

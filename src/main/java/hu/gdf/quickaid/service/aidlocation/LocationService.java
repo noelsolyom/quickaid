@@ -35,7 +35,7 @@ public class LocationService {
 		baseResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		JedisPool jedisPool = JedisConnector.getPool();
 		try (Jedis jedis = jedisPool.getResource()) {
-			jedis.select(1);
+			jedis.select(0);
 			baseResponse = createResponse(baseResponse, jedis, city);
 			jedisPool.destroy();
 			return baseResponse;
