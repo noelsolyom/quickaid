@@ -2,7 +2,7 @@ function setNewCity() {
     let key = document.getElementById("key").value;
     let city = document.getElementById("city");
 
-    fetch('http://localhost:8080/cities/?city=' + city.value, {
+    fetch('https://quick-aid-snz.herokuapp.com/cities/?city=' + city.value, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ function setNewCity() {
 function deleteCity() {
     let key = document.getElementById("key").value;
     let city = document.getElementById("city");
-    fetch('http://localhost:8080/cities/?city=' + city.value, {
+    fetch('https://quick-aid-snz.herokuapp.com/cities/?city=' + city.value, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

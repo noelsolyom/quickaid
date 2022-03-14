@@ -1,5 +1,5 @@
 function getCities() {
-    fetch('http://localhost:8080/cities')
+    fetch('https://quick-aid-snz.herokuapp.com/cities')
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);

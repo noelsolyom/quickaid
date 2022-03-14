@@ -15,7 +15,7 @@ function setNewLocation() {
         }
     }
 
-    fetch('http://localhost:8080/locations/?city=' + city.value + "&location=" + location.value, {
+    fetch('https://quick-aid-snz.herokuapp.com/locations/?city=' + city.value + "&location=" + location.value, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ function deleteLocation() {
     let city = document.getElementById("city");
     let location = document.getElementById("location");
     let address = document.getElementById("address");
-    fetch('http://localhost:8080/locations/?city=' + city.value + "&location=" + location.value, {
+    fetch('https://quick-aid-snz.herokuapp.com/locations/?city=' + city.value + "&location=" + location.value, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
