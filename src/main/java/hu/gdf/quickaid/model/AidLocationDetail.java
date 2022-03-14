@@ -2,11 +2,16 @@ package hu.gdf.quickaid.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class AidLocationDetail {
 
 	private String address;
 	private BigDecimal latitude;
 	private BigDecimal longitude;
+	@JsonInclude(value = Include.NON_NULL)
+	private String key;
 
 	public String getAddress() {
 		return address;
@@ -32,9 +37,18 @@ public class AidLocationDetail {
 		this.longitude = longitude;
 	}
 
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	@Override
 	public String toString() {
-		return "AidLocationDetail [address=" + address + ", latitude=" + latitude + ", longitude=" + longitude + "]";
+		return "AidLocationDetail [address=" + address + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", key=" + key + "]";
 	}
 
 }

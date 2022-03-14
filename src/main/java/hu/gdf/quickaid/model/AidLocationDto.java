@@ -1,8 +1,13 @@
 package hu.gdf.quickaid.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class AidLocationDto {
 
+	@JsonInclude(value = Include.NON_NULL)
 	private String name;
+
 	private AidLocationDetail details;
 
 	public String getName() {

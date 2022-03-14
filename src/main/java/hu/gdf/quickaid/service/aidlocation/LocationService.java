@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hu.gdf.quickaid.component.JedisConnector;
-import hu.gdf.quickaid.model.AidLocationDetail;
 import hu.gdf.quickaid.model.AidLocationDto;
 import hu.gdf.quickaid.model.BaseResponse;
 import redis.clients.jedis.Jedis;
@@ -26,6 +27,9 @@ public class LocationService {
 
 	@Value("${redis.locations}")
 	private String locations;
+
+	@Value("${master.admin.apikey}")
+	private String masterAdminApiKey;
 
 	private ObjectMapper mapper = new ObjectMapper();
 
@@ -46,20 +50,81 @@ public class LocationService {
 		}
 	}
 
+	public BaseResponse deleteLocation(HttpServletRequest request, String city, String location) throws Exception {
+		LOGGER.info("Trying to delete location: '{}' in city: ''.", city, location);
+		BaseResponse baseResponse = new BaseResponse();
+		baseResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+		if (masterAdminApiKey.equals(request.getHeader("api-key"))) {
+			return deleteLocationAuth(baseResponse, city, location);
+		} else {
+			baseResponse.setHttpStatus(HttpStatus.UNAUTHORIZED);
+			return baseResponse;
+		}
+	}
+
+	private BaseResponse deleteLocationAuth(BaseResponse baseResponse, String city, String location) {
+		JedisPool jedisPool = JedisConnector.getPool();
+		try (Jedis jedis = jedisPool.getResource()) {
+			jedis.select(0);
+			LOGGER.info("Deleting location: {}.", location);
+			jedis.hdel(locations + "#" + city, location);
+			baseResponse = createResponse(baseResponse, jedis, city);
+			jedisPool.destroy();
+			return baseResponse;
+		} catch (Exception e) {
+			LOGGER.error("Cannot delete location '{}'.", location);
+			e.printStackTrace();
+			jedisPool.destroy();
+			return baseResponse;
+		}
+	}
+
+	public BaseResponse setNewLocation(HttpServletRequest request, String city, String location,
+			AidLocationDto locationDto) throws Exception {
+		LOGGER.info("Trying to set new location: '{}' in city: ''.", city, location);
+		BaseResponse baseResponse = new BaseResponse();
+		baseResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+		if (masterAdminApiKey.equals(request.getHeader("api-key"))) {
+			return setNewLocationAuth(baseResponse, city, location, locationDto);
+		} else {
+			baseResponse.setHttpStatus(HttpStatus.UNAUTHORIZED);
+			return baseResponse;
+		}
+	}
+
+	private BaseResponse setNewLocationAuth(BaseResponse baseResponse, String city, String location,
+			AidLocationDto locationDto) {
+		LOGGER.info("Setting new location: {}", locationDto);
+		JedisPool jedisPool = JedisConnector.getPool();
+		try (Jedis jedis = jedisPool.getResource()) {
+			jedis.select(0);
+			LOGGER.info("Setting new location: {}.", location);
+			String newLocationString = mapper.writeValueAsString(locationDto);
+			jedis.hset(locations + "#" + city, location, newLocationString);
+			baseResponse = createResponse(baseResponse, jedis, city);
+			jedisPool.destroy();
+			return baseResponse;
+		} catch (Exception e) {
+			LOGGER.error("Cannot delete location '{}'.", location);
+			e.printStackTrace();
+			jedisPool.destroy();
+			return baseResponse;
+		}
+	}
+
 	private BaseResponse createResponse(BaseResponse baseResponse, Jedis jedis, String city) throws Exception {
 		Map<String, String> locations = getCachedLocations(jedis, city);
 		List<AidLocationDto> locationList = new ArrayList<>();
 		for (String locationKey : locations.keySet()) {
 			AidLocationDto locationDto = new AidLocationDto();
-			locationDto.setName(locationKey);
-			AidLocationDetail details = null;
 			try {
-				details = mapper.readValue(locations.get(locationKey), AidLocationDetail.class);
+				locationDto = mapper.readValue(locations.get(locationKey), AidLocationDto.class);
+				locationDto.getDetails().setKey(null);
+				locationDto.setName(locationKey);
 			} catch (Exception e) {
 				LOGGER.error("Cannot parse location details.");
 				e.printStackTrace();
 			}
-			locationDto.setDetails(details);
 			locationList.add(locationDto);
 		}
 		baseResponse.setData(locationList);
