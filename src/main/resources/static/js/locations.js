@@ -11,8 +11,19 @@ function getLocations(city) {
 }
 
 function createLocationOptions(data) {
+    if (document.getElementById("train") != null) {
+        document.getElementById("train").disabled = false;
+    }
+
     let locationList = document.getElementById("locations");
-    document.getElementById("chart").innerHTML = ""
+    if (document.getElementById("from") != null) {
+        document.getElementById("from").value = "";
+    }
+
+    let chart = document.getElementById("chart");
+    if (chart != null) {
+        chart.innerHTML = "";
+    }
     removeLocationOptions(locationList);
     let location = document.getElementById("location");
     let addressP = document.getElementById("addressP");

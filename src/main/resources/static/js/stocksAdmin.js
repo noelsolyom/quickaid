@@ -31,6 +31,7 @@ function setNewStock() {
             if (data.httpStatus == "OK") {
 
                 createStocks(data);
+                document.getElementById("stock").value = "";
             } else {
                 alert(data.httpStatus);
             }
@@ -42,13 +43,6 @@ function setNewStock() {
 
 }
 
-
-function deleteStockByName() {
-    let data = {
-        stock_name: document.getElementById("stock").value
-    }
-    deleteStock(data);
-}
 function deleteStock(data) {
     let stockname = null;
 
