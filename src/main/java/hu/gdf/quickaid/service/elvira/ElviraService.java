@@ -50,7 +50,7 @@ public class ElviraService {
 
 		LocalTime localBud = LocalTime.of(budapestTime.getHour(), budapestTime.getMinute());
 
-		String url = "http://apiv2.oroszi.net/elvira?from=" + from + "&to=" + to + "&date="
+		String url = "https://apiv2.oroszi.net/elvira?from=" + from + "&to=" + to + "&date="
 				+ budapestTime.format(dtf).toString().split(" ")[0];
 		LOGGER.info(url);
 
