@@ -1,7 +1,11 @@
 package hu.gdf.quickaid.service.aidlocation;
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -127,6 +131,18 @@ public class LocationService {
 			}
 			locationList.add(locationDto);
 		}
+
+		class AidLocationDtoComparator implements Comparator<AidLocationDto> {
+			Collator spCollator = Collator.getInstance(new Locale("hu", "HU"));
+
+			@Override
+			public int compare(AidLocationDto e1, AidLocationDto e2) {
+				return spCollator.compare(e1.getName(), e2.getName());
+			}
+		}
+
+		Collections.sort(locationList, new AidLocationDtoComparator());
+
 		baseResponse.setData(locationList);
 		baseResponse.setHttpStatus(HttpStatus.OK);
 		return baseResponse;

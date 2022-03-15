@@ -1,7 +1,11 @@
 package hu.gdf.quickaid.service.city;
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -112,6 +116,18 @@ public class CityService {
 		for (String city : cities) {
 			cityList.add(new CityDto(city));
 		}
+
+		class CityDtoComparator implements Comparator<CityDto> {
+			Collator spCollator = Collator.getInstance(new Locale("hu", "HU"));
+
+			@Override
+			public int compare(CityDto e1, CityDto e2) {
+				return spCollator.compare(e1.getCity(), e2.getCity());
+			}
+		}
+
+		Collections.sort(cityList, new CityDtoComparator());
+
 		baseResponse.setData(cityList);
 		baseResponse.setHttpStatus(HttpStatus.OK);
 		return baseResponse;

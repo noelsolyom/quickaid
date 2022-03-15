@@ -1,8 +1,12 @@
 package hu.gdf.quickaid.service.stock;
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -226,6 +230,18 @@ public class StockService {
 			stock.setValue(Integer.valueOf(stocks.get(stockKey)));
 			stockList.add(stock);
 		}
+
+		class StockDtoComparator implements Comparator<StockDto> {
+			Collator spCollator = Collator.getInstance(new Locale("hu", "HU"));
+
+			@Override
+			public int compare(StockDto e1, StockDto e2) {
+				return spCollator.compare(e1.getName(), e2.getName());
+			}
+		}
+
+		Collections.sort(stockList, new StockDtoComparator());
+
 		baseResponse.setData(stockList);
 		baseResponse.setHttpStatus(HttpStatus.OK);
 		return baseResponse;
