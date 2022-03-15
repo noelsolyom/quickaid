@@ -89,6 +89,14 @@ function fillLocation(selectBox) {
         let city = document.getElementById("cities").value;
         getStocks(i, city, selectBox.options[selectBox.selectedIndex].locationData.name);
         i = setInterval(function () {
+            var currentdate = new Date();
+            var datetime = "Auto stock refresh at " + currentdate.getFullYear() + "-"
+                + (currentdate.getMonth() + 1) + "-"
+                + currentdate.getDate() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
+            console.log(datetime);
             getStocks(i, city, selectBox.options[selectBox.selectedIndex].locationData.name);
         }, 30000);
     }
