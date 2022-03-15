@@ -1,6 +1,7 @@
 function getTrain() {
     let from = document.getElementById("from").value;
     let to = document.getElementById("cities").value;
+    document.getElementById("train").disabled = true;
 
     fetch('https://quick-aid-snz.herokuapp.com/elvira?from=' + from + "&to=" + to)
         .then(response => response.json())
@@ -11,6 +12,7 @@ function getTrain() {
             } else {
                 alert("Sajnos nem található vonat.");
             }
+            document.getElementById("train").disabled = false;
 
 
         })
