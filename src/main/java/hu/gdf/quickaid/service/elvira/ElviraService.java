@@ -5,11 +5,16 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
@@ -59,10 +64,16 @@ public class ElviraService {
 		List<TrainResponse> trainResponses = new ArrayList<>();
 		int counter = 0;
 		try {
-			ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-			ElviraResponse elviraResponse = mapper.readValue(response.getBody(), ElviraResponse.class);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+			headers.add("user-agent",
+					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+			HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
-			for (Timetable timetable : elviraResponse.getTimetable()) {
+			ResponseEntity<ElviraResponse> elviraResponse = restTemplate.exchange(url, HttpMethod.GET, entity,
+					ElviraResponse.class);
+
+			for (Timetable timetable : elviraResponse.getBody().getTimetable()) {
 				if (counter == 3) {
 					break;
 				}
