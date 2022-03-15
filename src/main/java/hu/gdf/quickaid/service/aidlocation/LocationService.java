@@ -51,7 +51,7 @@ public class LocationService {
 	}
 
 	public BaseResponse deleteLocation(HttpServletRequest request, String city, String location) throws Exception {
-		LOGGER.info("Trying to delete location: '{}' in city: ''.", city, location);
+		LOGGER.info("Trying to delete location: '{}' in city: '{}'.", location, city);
 		BaseResponse baseResponse = new BaseResponse();
 		baseResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		if (masterAdminApiKey.equals(request.getHeader("api-key"))) {
@@ -81,7 +81,7 @@ public class LocationService {
 
 	public BaseResponse setNewLocation(HttpServletRequest request, String city, String location,
 			AidLocationDto locationDto) throws Exception {
-		LOGGER.info("Trying to set new location: '{}' in city: ''.", city, location);
+		LOGGER.info("Trying to set new location: '{}' in city: '{}'.", location, city);
 		BaseResponse baseResponse = new BaseResponse();
 		baseResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		if (masterAdminApiKey.equals(request.getHeader("api-key"))) {
@@ -134,7 +134,6 @@ public class LocationService {
 
 	private Map<String, String> getCachedLocations(Jedis jedis, String city) throws Exception {
 		return jedis.hgetAll(locations + "#" + city);
-
 	}
 
 }

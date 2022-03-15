@@ -12,6 +12,7 @@ function getLocations(city) {
 
 function createLocationOptions(data) {
     let locationList = document.getElementById("locations");
+    document.getElementById("chart").innerHTML = ""
     removeLocationOptions(locationList);
     let location = document.getElementById("location");
     let addressP = document.getElementById("addressP");
@@ -68,6 +69,12 @@ function fillLocation(selectBox) {
     let addressP = document.getElementById("addressP");
     if (addressP != null) {
         addressP.innerHTML = selectBox.options[selectBox.selectedIndex].locationData.details.address;
+    }
+
+    let chart = document.getElementById("chart");
+    if (chart != null) {
+        let city = document.getElementById("cities").value;
+        getStocks(chart, city, selectBox.options[selectBox.selectedIndex].locationData.name);
     }
 
 }
