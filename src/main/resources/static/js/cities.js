@@ -1,3 +1,5 @@
+var i = null;
+
 function getCities() {
     fetch('https://quick-aid-snz.herokuapp.com/cities')
         .then(response => response.json())

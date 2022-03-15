@@ -1,4 +1,5 @@
 function getLocations(city) {
+    clearInterval(i);
     fetch('https://quick-aid-snz.herokuapp.com/locations?city=' + city)
         .then(response => response.json())
         .then(data => {
@@ -66,6 +67,7 @@ function removeLocationOptions(selectElement) {
 }
 
 function fillLocation(selectBox) {
+    clearInterval(i);
     let location = document.getElementById("location");
     if (location != null) {
         location.value = selectBox.options[selectBox.selectedIndex].locationData.name;
@@ -85,7 +87,10 @@ function fillLocation(selectBox) {
     let chart = document.getElementById("chart");
     if (chart != null) {
         let city = document.getElementById("cities").value;
-        getStocks(chart, city, selectBox.options[selectBox.selectedIndex].locationData.name);
+        getStocks(i, city, selectBox.options[selectBox.selectedIndex].locationData.name);
+        i = setInterval(function () {
+            getStocks(i, city, selectBox.options[selectBox.selectedIndex].locationData.name);
+        }, 30000);
     }
 
 }

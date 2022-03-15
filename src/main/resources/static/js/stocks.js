@@ -1,4 +1,4 @@
-function getStocks(chart, city, location) {
+function getStocks(i, city, location) {
     fetch('https://quick-aid-snz.herokuapp.com/stocks?city=' + city + "&location=" + location)
         .then(response => response.json())
         .then(data => {
