@@ -77,12 +77,12 @@ function drawStock(stock) {
     }
 
     return `<p class="fs-5">${stock.name}</p>
-            <button type="button" class="btn btn-warning contributor" onclick="removeStock(this)" stock_name="${stock.name}" style="visibility: ${keyInput}")>Fogyasztás</button>
-            <button type="button" class="btn btn-success contributor" onclick="addStock(this)" stock_name="${stock.name}" style="visibility: ${keyInput}")>Feltöltés</button>
-            <button type="button" class="btn btn-danger contributor" onclick=deleteStock(this) stock_name="${stock.name}" style="visibility: ${keyInput}; float: right">Törlés</button>
             <div class="progress" style="margin-top: 1rem">
                 <div class="progress-bar progress-bar-striped ${level}" role="progressbar" style="width: ${percent}%"
                     aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <br></br>`
+            </div><br>
+            <button type="button" class="btn btn-warning contributor" onclick="removeStock(this)" stock_name="${stock.name}" style="visibility: ${keyInput}")>Fogyasztás</button>
+            <button type="button" class="btn btn-success contributor" onclick="addStock(this)" stock_name="${stock.name}" style="visibility: ${keyInput}")>Feltöltés</button>
+            <button type="button" class="btn btn-danger contributor" onclick=deleteStock(this) stock_name="${stock.name}" style="visibility: ${keyInput}; float: right">Törlés</button>
+            <hr>`
 }
