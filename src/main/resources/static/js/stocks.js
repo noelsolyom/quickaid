@@ -76,7 +76,7 @@ function drawStock(stock) {
             percent = 100;
     }
 
-    return `<p class="fs-5" style="display: inline">${stock.name}</p>
+    return `<p class="fs-5">${stock.name}</p>
             <button type="button" class="btn btn-warning contributor" onclick="removeStock(this)" stock_name="${stock.name}" style="visibility: ${keyInput}")>Fogyasztás</button>
             <button type="button" class="btn btn-success contributor" onclick="addStock(this)" stock_name="${stock.name}" style="visibility: ${keyInput}")>Feltöltés</button>
             <button type="button" class="btn btn-danger contributor" onclick=deleteStock(this) stock_name="${stock.name}" style="visibility: ${keyInput}; float: right">Törlés</button>
