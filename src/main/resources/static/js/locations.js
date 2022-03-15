@@ -44,9 +44,9 @@ function createLocationOptions(data) {
     defaultValue.setAttribute("disabled", true);
     defaultValue.setAttribute("selected", true);
     if (data.data.length == 0) {
-        defaultValue.innerHTML = "---Ebben a városban nem találhatók segélyhelyek---";
+        defaultValue.innerHTML = "---Ebben a városban nem találhatók segélypontok---";
     } else {
-        defaultValue.innerHTML = "---Segélyhelyek---";
+        defaultValue.innerHTML = "---Segélypontok---";
     }
     locationList.appendChild(defaultValue);
 
