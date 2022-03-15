@@ -2,7 +2,7 @@ function getTrain() {
     let from = document.getElementById("from").value;
     let to = document.getElementById("cities").value;
 
-    fetch('http://localhost:8080/elvira?from=' + from + "&to=" + to)
+    fetch('https://quick-aid-snz.herokuapp.com/elvira?from=' + from + "&to=" + to)
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
