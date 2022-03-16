@@ -34,6 +34,8 @@ function setNewStock() {
             } else {
                 if (data.httpStatus == "UNAUTHORIZED") {
                     alert("Hibás API kulcs.");
+                } else if (data.httpStatus == "BAD_REQUEST") {
+                    alert("Készlet létrehozása nem sikerült. (Írt be megnevezést?)");
                 } else {
                     throw error;
                 }

@@ -99,6 +99,11 @@ public class StockService {
 		LOGGER.info("Trying to create stock: '{}' in city: '{}' in location: {}.", stock, city, location);
 		BaseResponse baseResponse = new BaseResponse();
 		baseResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+		if (stock == null || stock.trim().length() == 0) {
+			baseResponse.setHttpStatus(HttpStatus.BAD_REQUEST);
+			return baseResponse;
+		}
+
 		String apiKey = request.getHeader("api-key");
 
 		if (apiKey != null) {
