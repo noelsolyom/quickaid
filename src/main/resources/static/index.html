@@ -23,13 +23,11 @@
         </nav><br>
         <p class="fs-6 text-primary"><b>"Rengeteg problémát okoz az 'SOS kérek' típusú facebook
                 bejegyzéseknél - amik
-                aztán vagy teljesülnek vagy nem - hogy előbb-utóbb biztosan elvesznek a hírfolyamban." Ezen az oldalon
-                minden azonnal látható a segíteni szándékozók számára; adott segélyponton a dolgokat optimális
-                mennyiségben
-                célszerű tartani. Ekkor van is belőle és nincs is túltöltve a készlet (már nem tudják hová rakni). Ha
-                fogyni
-                kezd valami, csökkentik a készletet, minél jobban fogy, annál jobban. Ha közben érkezik egy adag a
-                'dologból', akkor az értéket növelik. A dolog lehet fuvar, élelem, innivaló, tolmács, stb. Ahol amire
+                aztán vagy teljesülnek vagy nem - hogy előbb-utóbb biztosan elvesznek a hírfolyamban." Ezen az oldalon a
+                segíteni szándékozóknak valós időben láthatóvá válik a segélypontokon elérhető készletek és felajánlások
+                (élemiszer, fuvar, tolmácsok, stb.) mennyisége. Ennek köszönhetően a valós igényeknek megefelően, térben
+                és
+                időben kedvezőbben lehet a segítséget célba juttatni. Ahol amire
                 éppen
                 szükség van, itt megjelenik.
             </b></p>
@@ -51,15 +49,15 @@
         <label for="from">Másik városból jönne? Írja be honnan indulna.</label>
         <input type="text" id="from" name="from" placeholder="pl.: Pécs">
         <button id="train" type="button" class="btn btn-primary" onclick="getTrain()" disabled=true>Menetrend</button>
-        <p class="fs-6 text-secondary"><em>A Menerend gomb megnyomása után megjelenik a fentebb
+        <p class="fs-6 text-secondary"><em>A Menetrend gomb megnyomása után megjelenik a fentebb
                 kiválasztott város felé a mai napon leghamarabb még közlekedő
                 (maximum) három vonat menetrendje.</em>
         </p>
 
         <p class="fs-2">Készletek</p>
-        <p class="fs-6 text-secondary"><em>A kiválasztott segélyponton az alábbi készletekre van szükség. <u>Minél
-                    kevesebb van valamiből annál nagyobb szükség van
-                    rá.</u></em></p>
+        <p class="fs-6 text-secondary"><em>A kiválasztott segélyponton az alábbi készletekre van szükség. <u><b>Minél
+                        kevesebb van valamiből, annál nagyobb szükség van
+                        rá.</b></u> A lista fél percenként automatikusan frissül.</em></p>
         <hr>
 
         <div id="chart">
@@ -91,6 +89,10 @@
             <p class="text-center text-muted">Quick-Aid - Segélypontok SOS készletei</p>
             <p class="text-center text-muted">-2022- SNZ@GDF - v0.1 - 2022.03.14</p>
             <p class="text-center text-muted">No cookies ヽ(•‿•)ノ</p>
+            <p class="text-center text-muted">Tesztelve: Chrome 99.0.4844.74 (Win 64 bit), Firefox 98.0.1 (Win 64 bit),
+                Edge 99.0.1150.39 (Win 64 bit),
+                Opera 84.0.4316.31 (Win 64 bit)</p>
+            <p class="text-center text-muted">Chrome 99.0.4844.74 (Android), MI Browser V12.24.1-gn (Android)</p>
         </footer>
     </div>
 
