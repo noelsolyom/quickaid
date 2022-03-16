@@ -83,9 +83,14 @@ public class ElviraService {
 				if (trainTime.isAfter(localBud)) {
 					TrainResponse trainResponse = new TrainResponse();
 					trainResponse.setStartTime(timetable.getStarttime());
-					trainResponse.setStart(timetable.getStart());
+					trainResponse.setStart(timetable.getStart() != null && !timetable.getStart().trim().equals("")
+							? timetable.getStart()
+							: "<<<" + from + ">>>");
 					trainResponse.setDestinationTime(timetable.getDestinationtime());
-					trainResponse.setDestination(timetable.getDestination());
+					trainResponse.setDestination(
+							timetable.getDestination() != null && !timetable.getDestination().trim().equals("")
+									? timetable.getDestination()
+									: "<<<" + to + ">>>");
 					trainResponse.setType(timetable.getType());
 					trainResponse.setClassName(timetable.getClass_name());
 					trainResponses.add(trainResponse);
