@@ -29,16 +29,21 @@ function setNewStock() {
         .then(data => {
             console.log('Success:', data);
             if (data.httpStatus == "OK") {
-
                 createStocks(data);
                 document.getElementById("stock").value = "";
             } else {
-                alert(data.httpStatus);
+                if (data.httpStatus == "UNAUTHORIZED") {
+                    alert("Hibás API kulcs.");
+                } else {
+                    throw error;
+                }
+
             }
 
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert("Hiba történt. (Választott várost/segélypontot?)");
         });
 
 }
@@ -66,15 +71,21 @@ function deleteStock(data) {
         .then(data => {
             console.log('Success:', data);
             if (data.httpStatus == "OK") {
-
                 createStocks(data);
+                document.getElementById("stock").value = "";
             } else {
-                alert(data.httpStatus);
+                if (data.httpStatus == "UNAUTHORIZED") {
+                    alert("Hibás API kulcs.");
+                } else {
+                    throw error;
+                }
+
             }
 
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert("Ismeretlen hiba történt.");
         });
 
 }
@@ -96,14 +107,21 @@ function addStock(data) {
         .then(data => {
             console.log('Success:', data);
             if (data.httpStatus == "OK") {
-
                 createStocks(data);
+                document.getElementById("stock").value = "";
             } else {
-                alert(data.httpStatus);
+                if (data.httpStatus == "UNAUTHORIZED") {
+                    alert("Hibás API kulcs.");
+                } else {
+                    throw error;
+                }
+
             }
+
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert("Ismeretlen hiba történt.");
         });
 }
 
@@ -124,13 +142,20 @@ function removeStock(data) {
         .then(data => {
             console.log('Success:', data);
             if (data.httpStatus == "OK") {
-
                 createStocks(data);
+                document.getElementById("stock").value = "";
             } else {
-                alert(data.httpStatus);
+                if (data.httpStatus == "UNAUTHORIZED") {
+                    alert("Hibás API kulcs.");
+                } else {
+                    throw error;
+                }
+
             }
+
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert("Ismeretlen hiba történt.");
         });
 }

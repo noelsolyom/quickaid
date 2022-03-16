@@ -22,9 +22,6 @@
             <a class="navbar-brand">Quick-Aid</a>
         </nav><br>
 
-        <label for="key">Helyszín/Segítő API-kulcsa:</label>
-        <input type="password" id="key" name="key" oninput="showInputs()"><br><br>
-
         <label for="cities">Válasszon várost:</label>
         <select name="cities" id="cities" onchange="getLocations(this.value)">
 
@@ -36,24 +33,38 @@
         </select><br><br>
 
         <label for="addressP">Segélypont címe:</label>
-        <p id="addressP" name="addressP" class="fs-3" style="display: inline;"></p><br><br>
+        <p id="addressP" name="addressP" class="fs-3 font-weight-bold" style="display: inline;"></p><br><br>
 
-        <label for="stock" class="contributor" style="visibility: hidden">Új készlet:</label>
-        <input type="text" id="stock" name="stock" class="contributor" style="visibility: hidden">
-
-        <button type="button" class="btn btn-primary contributor" onclick="setNewStock()" style="visibility: hidden">Új
-            készlet</button><br><br>
-
+        <label for="from">Vasút:</label>
         <input type="text" id="from" name="from" placeholder="Honnan">
-        <button id="train" type="button" class="btn btn-primary" onclick="getTrain()"
-            disabled=true>Vonatok</button><br><br>
-        <br><br>
+        <button id="train" type="button" class="btn btn-primary" onclick="getTrain()" disabled=true>Lekérdez</button>
+        <p class="fs-6 text-secondary"><em>A kiválasztott város felé leghamarabb közlekedő három vonat menetrendje.</em>
+        </p>
 
-        <p class=" fs-2">Készletek</p><br>
+        <p class="fs-2">Készletek</p>
+        <hr>
 
         <div id="chart">
 
         </div>
+
+        <label for="stock" class="contributor" style="visibility: hidden">Új készlet:</label>
+        <input type="text" id="stock" name="stock" class="contributor" style="visibility: hidden"
+            placeholder="megnevezés pl.: hálózsák">
+
+        <button type="button" class="btn btn-success contributor" onclick="setNewStock()" style="visibility: hidden">Új
+            készlet</button>
+        <p class="fs-6 text-secondary contributor" style="visibility: hidden"><em>Új készlet felvitelénél a telítettség
+                alapbeállítása 50%</em></p>
+        <hr>
+
+        <p class="fs-6 text-secondary"><em>Az API kulcs beírásával automatikusan megjelennek a segéd-interfészek.</em>
+        </p>
+        <label for="key">Helyszín API-kulcsa:</label>
+        <input type="password" id="key" name="key" oninput="showInputs()">
+        <p class="fs-6 text-secondary"><em>Az API kulcs helyszínhez kötött, mellyel az adott segélypont készleteit lehet
+                adminisztrálni.</em></p>
+        <hr>
 
         <footer class="py-3 my-4">
             <p class="text-center text-muted">-2022- SNZ@GDF - v0.1 - 2022.03.14</p>
