@@ -19,10 +19,10 @@
     <div class="container">
 
         <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
-            <a class="navbar-brand">Quick-Aid</a>
+            <a class="navbar-brand">Quick-Aid - Segélypontokon használható készletnyilvántartó rendszer.</a>
         </nav><br>
 
-        <label for="cities">Válasszon várost:</label>
+        <label for="cities">Válasszon várost, ahol segítséget tudna nyújtani:</label>
         <select name="cities" id="cities" onchange="getLocations(this.value)">
 
         </select><br><br>
@@ -35,15 +35,17 @@
         <label for="addressP">Segélypont címe:</label>
         <p id="addressP" name="addressP" class="fs-3 font-weight-bold" style="display: inline;"></p><br><br>
 
-        <label for="from">Vasút:</label>
-        <input type="text" id="from" name="from" placeholder="Honnan">
-        <button id="train" type="button" class="btn btn-primary" onclick="getTrain()" disabled=true>Lekérdez</button>
-        <p class="fs-6 text-secondary"><em>A kiválasztott város felé leghamarabb közlekedő három vonat menetrendje.</em>
+        <label for="from">Másik városból jönne? Írja be honnan indulna.</label>
+        <input type="text" id="from" name="from" placeholder="pl.: Pécs">
+        <button id="train" type="button" class="btn btn-primary" onclick="getTrain()" disabled=true>Menetrend</button>
+        <p class="fs-6 text-secondary"><em>A Menerend gomb megnyomása után megjelenik a fentebb
+                kiválasztott város felé a mai napon leghamarabb még közlekedő
+                (maximum) három vonat menetrendje.</em>
         </p>
 
         <p class="fs-2">Készletek</p>
-        <p class="fs-6 text-secondary"><em>A kiválasztott segélyponton az alábbi készletekre van szükség. A sávok az
-                adott dolog aktuális telítettségét jelölik. <u>Minél kevesebb van valamiből annál nagyobb szükség van
+        <p class="fs-6 text-secondary"><em>A kiválasztott segélyponton az alábbi készletekre van szükség. <u>Minél
+                    kevesebb van valamiből annál nagyobb szükség van
                     rá.</u></em></p>
         <hr>
 
@@ -61,17 +63,19 @@
                 alapbeállítása 50%</em></p>
         <hr>
 
+        <p class="fs-6 text-secondary text-danger"><em>Segítőknek/Önkénteseknek</em></p>
         <label for="key">Segélypont API-kulcsa:</label>
-        <input type="password" id="key" name="key" oninput="showInputs()">
+        <input type="password" id="key" name="key" oninput="showInputs()"><br><br>
         <p class="fs-6 text-secondary"><em>Az API kulcs egy minimum 10 karakter hosszú, helyszínhez kötött 'jelszó',
-                mellyel az adott segélypont készleteit lehet
+                amellyel a fent kiválasztott segélypont készleteit lehet
                 adminisztrálni.</em></p>
-        <p class="fs-6 text-secondary"><em>Az API kulcs beírásával automatikusan megjelennek a segéd-interfészek.</em>
+        <p class="fs-6 text-secondary"><em>Az API kulcs beírásával automatikusan megjelennek a készletek nyilvántartását
+                segítő kezelőgombok és beviteli mezők.</em>
         </p>
         <hr>
 
         <footer class="py-3 my-4">
-            <p class="text-center text-muted">Segélypontokon használható készletnyilvántartó rendszer.</p>
+            <p class="text-center text-muted">Quick-Aid - Segélypontokon használható készletnyilvántartó rendszer.</p>
             <p class="text-center text-muted">-2022- SNZ@GDF - v0.1 - 2022.03.14</p>
             <p class="text-center text-muted">No cookies ヽ(•‿•)ノ</p>
         </footer>

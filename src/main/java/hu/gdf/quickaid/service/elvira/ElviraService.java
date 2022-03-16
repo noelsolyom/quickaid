@@ -85,18 +85,21 @@ public class ElviraService {
 					trainResponse.setStartTime(timetable.getStarttime());
 					trainResponse.setStart(timetable.getStart() != null && !timetable.getStart().trim().equals("")
 							? timetable.getStart()
-							: "<<<" + from + ">>>");
+							: "<<< " + from + " >>>");
 					trainResponse.setDestinationTime(timetable.getDestinationtime());
 					trainResponse.setDestination(
 							timetable.getDestination() != null && !timetable.getDestination().trim().equals("")
 									? timetable.getDestination()
-									: "<<<" + to + ">>>");
+									: "<<< " + to + " >>>");
 					trainResponse.setType(timetable.getType());
 					trainResponse.setClassName(timetable.getClass_name());
 					trainResponses.add(trainResponse);
 					counter++;
 				}
 
+			}
+			if (trainResponses.size() == 0) {
+				return baseResponse;
 			}
 
 			baseResponse.setData(trainResponses);

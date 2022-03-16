@@ -8,7 +8,7 @@ function getTrain() {
         .then(data => {
             console.log('Success:', data);
             if (data.httpStatus == "OK") {
-                alertTrains(data);
+                alertTrains(data, from, to);
             } else {
                 alert("Sajnos nem található vonat.");
             }
@@ -21,12 +21,13 @@ function getTrain() {
         });
 }
 
-function alertTrains(data) {
+function alertTrains(data, from, to) {
     console.log(data.data);
-    let message = "A legközelebbi három vonat a mai napon: \n"
+    let message = `A mai napon a legközelebbi (maximum) három vonat ${from} és ${to} között:\n\n`
     for (let i = 0; i < data.data.length; i++) {
         console.log(data.data[i]);
-        message += `indul: ${data.data[i].startTime} - állomás: ${data.data[i].start} - érkezik: ${data.data[i].destinationTime} - állomás:${data.data[i].destination}\n`
+        message += `indul: ${data.data[i].startTime} - honnan: ${data.data[i].start}\nérkezik: ${data.data[i].destinationTime} - hova: ${data.data[i].destination}\n---\n`
     }
+    message = message.substring(0, message.length - 4);
     alert(message);
 }
