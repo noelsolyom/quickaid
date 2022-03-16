@@ -40,7 +40,7 @@
 
         <label for="locations">Válasszon segélypontot:</label>
         <select name="locations" id="locations" onchange="fillLocation(this)">
-
+            <option disabled selected>---Válasszon várost---</option>
         </select><br><br>
 
         <label for="addressP">Segélypont címe:</label>
@@ -53,11 +53,15 @@
                 kiválasztott város felé a mai napon leghamarabb még közlekedő
                 (maximum) három vonat menetrendje.</em>
         </p>
-
+        <hr>
         <p class="fs-2">Készletek</p>
         <p class="fs-6 text-secondary"><em>A kiválasztott segélyponton az alábbi készletekre van szükség. <u><b>Minél
                         kevesebb van valamiből, annál nagyobb szükség van
-                        rá.</b></u> A lista fél percenként automatikusan frissül.</em></p>
+                        rá.</b></u></em></p>
+        <p class="fs-6 text-secondary"><em>Magyarázat a színekhez: Piros: nagyon kevés készlet; Sárga: kevés készlet;
+                Középkék: közepes
+                készlet; Világoskék: optimális készlet; Zöld: telített készlet.</em></p>
+        <p class="fs-6 text-secondary"><em>A lista félpercenként automatikusan frissül.</em></p>
         <hr>
 
         <div id="chart">

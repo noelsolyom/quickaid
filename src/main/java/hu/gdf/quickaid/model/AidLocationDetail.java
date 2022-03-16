@@ -12,6 +12,8 @@ public class AidLocationDetail {
 	private BigDecimal longitude;
 	@JsonInclude(value = Include.NON_NULL)
 	private String key;
+	private String contactName;
+	private String contactEmail;
 
 	public String getAddress() {
 		return address;
@@ -45,10 +47,26 @@ public class AidLocationDetail {
 		this.key = key;
 	}
 
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+
 	@Override
 	public String toString() {
 		return "AidLocationDetail [address=" + address + ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", key=" + key + "]";
+				+ ", key=" + key + ", contactName=" + contactName + ", contactEmail=" + contactEmail + "]";
 	}
 
 }
